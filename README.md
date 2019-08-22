@@ -37,4 +37,7 @@ training accuracy: 99.95%
 
 test accuracy: 94.08%
 
+Structure 4:
+99.90833333333333 93.61 50
+
 
