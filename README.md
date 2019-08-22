@@ -29,7 +29,9 @@ test accuracy: 91.93%
 
 Structure 3:
 
-Resnet 18
+Resnet-18
+
+epoch: 43
 
 training accuracy: 99.95%
 
