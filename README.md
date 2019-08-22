@@ -27,3 +27,12 @@ training accuracy: 98.70%
 
 test accuracy: 91.93%
 
+Structure 3:
+
+Resnet 18
+
+training accuracy: 99.95%
+
+test accuracy: 94.08%
+
+
