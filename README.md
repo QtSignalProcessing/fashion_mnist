@@ -7,13 +7,13 @@ Optimizer: SGD + Momentum
 learning rate: lr = 0.001
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
-| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | --
+| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
 | Resnet-18           | 11.1M      | 0.992             | 0.941         | 43    |    -                    | -              | 4            |
 
 
 ---
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
-| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | --
+| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
 | Resnet-18           | 11.1M      | 0.999             | 0.91         | -    |    -                    | -              |  128           |
 
 ---
@@ -26,9 +26,9 @@ Optimizer: SGD + Momentum
 
 learning rate: lr = 0.001
 
-| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time |
-| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           |
-| Resnet-18 like      | 2.81M      | 0.995             | 0.935         | 42    |    -                    | -              |
+| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
+| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--      |
+| Resnet-18 like      | 2.81M      | 0.995             | 0.935         | 42    |    -                    | -              | 4   |
 
 
 
