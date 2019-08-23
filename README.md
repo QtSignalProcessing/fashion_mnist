@@ -74,4 +74,8 @@ Structure 4:
 data aug: random crop
 86.45166666666667 93.13 186
 
+res 12
+
+99.83 93.05 42
+
 
