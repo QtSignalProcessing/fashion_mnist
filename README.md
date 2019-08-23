@@ -1,5 +1,16 @@
 # fashion_mnist
-lr = 0.001
+
+Strategy 1:
+
+Optimizer: SGD + Momentum
+
+learning rate: lr = 0.001
+
+| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time |
+| :---                | :---       | :---        | :---              | :---     | :---|        | :--                  |
+| Resnet-18 like      | 2.81M       | 0.992    | 0.935              | 42| | -             | -              |
+
+
 
 Structure 1: 
 
