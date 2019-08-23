@@ -51,4 +51,7 @@ test accuracy: 94.08%
 Structure 4:
 99.90833333333333 93.61 50
 
+data aug: random crop
+86.45166666666667 93.13 186
+
 
