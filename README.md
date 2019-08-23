@@ -7,12 +7,12 @@ Optimizer: SGD + Momentum
 learning rate: lr = 0.001
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time |
-| :---                | :---       | :---        | :---              | :---     | :---|        | :--                  |
-| Resnet-18 like      | 2.81M       | 0.992    | 0.935              | 42| | -             | -              |
+| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           |
+| Resnet-18 like      | 2.81M      | 0.992             | 0.935         | 42    |    -                    | -              |
 
 
 
-Structure 1: 
+Structure 1:       
 
 input ->  conv2d_relu->max_pool -> conv2d_relu->max_pool->conv2d_relu->max_pool->fc1->fc2
 
