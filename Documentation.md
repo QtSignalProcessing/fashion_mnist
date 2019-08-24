@@ -24,7 +24,7 @@ CNN architecture: 3 conv layers and 2 fc layers. (random choice)
 
 input ->  conv2d_relu->max_pool -> conv2d_relu->max_pool->conv2d_relu->max_pool->fc1->fc2
 
-28x28x1   28x28x32     14x14x32     14x14x64     7x7x64    7x7x128      3x3x128->512-> 10
+28x28x1  ->    28x28x32    ->        14x14x32    ->        14x14x64    ->      7x7x64    ->       7x7x128    ->       3x3x128   ->    512   ->        10
 
 
 Optimizer: SGD + Momentum
@@ -51,7 +51,8 @@ Try a larger model with the target of boosting training and test accuracies.
 CNN architecture: Resnet-14
 
 input -> conv1 -> 3 x residual blocks (4) -> fc
-         3x3, 64   [ 64, 128, 256 ]           10
+
+         3x3 ,64       [ 64, 128, 256 ]           10
 
 
 Optimizer: SGD + Momentum
