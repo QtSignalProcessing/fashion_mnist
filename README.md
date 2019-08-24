@@ -1,6 +1,22 @@
 # fashion_mnist
 
-Strategy 1:
+Strateg1 1:
+
+Architecture: 3 conv layers and 2 fc layers. (random choice)
+
+Optimizer: SGD + Momentum
+
+learning rate: lr = 0.001
+
+| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | Batch size|
+| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
+| Resnet-18           | 2.75M      | 0.95             | 0.921         | 10    |    -                    | -              | 4            |
+
+
+
+
+
+Strategy 2:
 
 Optimizer: SGD + Momentum
 
@@ -20,7 +36,7 @@ learning rate: lr = 0.001
 
 
 
-Strategy 2:
+Strategy 3:
 
 Optimizer: SGD + Momentum
 
