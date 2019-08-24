@@ -3,14 +3,12 @@
 
 | Accuracy            | Param storge | Inference time |
 | :---                | :---         |  :--           |
-| ~0.95               |  <10M        |   < 0.001s     |
+| ~0.95               |  <10M        |   < 0.005s     |
 
 Reason: In real projects, accuracy is the most important metric. Howerver, due to the limited computational resouce, 
 we may have some constraints, two most common constraints are storage and inference time.
 
-## Step 1:
-
-Check data distribution:
+## Step 1: Check data distribution
 
 Training set:
 
@@ -20,12 +18,13 @@ Test set:
 ![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/test_dist.png)
 
 
+## Step 2: Create a toy model for a better understanding of the data
 
-## Strategy 1:
+CNN architecture: 3 conv layers and 2 fc layers. (random choice)
 
-Architecture: 3 conv layers and 2 fc layers. (random choice)
+input ->  conv2d_relu->max_pool -> conv2d_relu->max_pool->conv2d_relu->max_pool->fc1->fc2
 
-Reason: Building a small network can help us to understand the data. 
+28x28x1   28x28x32     14x14x32     14x14x64     7x7x64    7x7x128      3x3x128->512-> 10
 
 
 Optimizer: SGD + Momentum
@@ -34,13 +33,26 @@ learning rate: lr = 0.001
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | Batch size|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
-| Resnet-18           | 2.75M      | 0.95             | 0.921         | 10    |    -                    | -              | 4            |
+| toy cnn           | 2.75M      | 0.95             | 0.921         | 10    |    -                    | -              | 4            |
 
 
+Analysis:
+
+1. Training accuracy is not 100% -> Could try other more complex network architectures
+2. Test accuracy is less than training accuracy -> The model is overfitted
+
+Next step:
+
+Try a larger model with the target of boosting training and test accuracies.
 
 
+## Step 3:
 
-Strategy 2:
+CNN architecture: Resnet-14
+
+input -> conv1 -> 3 x residual blocks (4) -> fc
+         3x3, 64   [ 64, 128, 256 ]           10
+
 
 Optimizer: SGD + Momentum
 
@@ -48,13 +60,13 @@ learning rate: lr = 0.001
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
-| Resnet-18           | 11.1M      | 0.992             | 0.941         | 43    |    -                    | -              | 4            |
+| Resnet-14           | 11.1M      | 0.992             | 0.941         | 43    |    987s                 |  0.002s             | 4            |
 
 
 ---
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
-| Resnet-18           | 11.1M      | 0.999             | 0.91         | -    |    -                    | -              |  128           |
+| Resnet-14           | 11.1M      | 0.999             | 0.91         | -    |    -                    | -              |  128           |
 
 ---
 
@@ -74,9 +86,7 @@ learning rate: lr = 0.001
 
 Structure 1:       
 
-input ->  conv2d_relu->max_pool -> conv2d_relu->max_pool->conv2d_relu->max_pool->fc1->fc2
 
-28x28x1   28x28x32     14x14x32    14x14x64     7x7x64    7x7x128      3x3x128-> 512-> 10
 
 epoch = 10
 
