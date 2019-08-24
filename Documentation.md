@@ -115,14 +115,14 @@ learning rate decay: at epchoch 20, 40 with parameter gamma = 0.1
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--      |
-| Resnet-14 like      | 2.81M      | 0.995             | 0.935         | 42    |    98.7s                |    0.0005s              | 4   |
+| Resnet-14 like      | 2.81M      | 0.995             | 0.935         | 42    |    98.7s                |    0.002s              | 4   |
 
 
 Analysis:
 
 1. Resnet-14 like also can learn the training set well (0.99+ training accurcary).
 
-2. Compared to previous Resnet-14, this model has less parameters and is faster (both training and testing).
+2. Compared to previous Resnet-14, this model has less parameters and is faster (training).
 
 3. The model is overfitted.
 
