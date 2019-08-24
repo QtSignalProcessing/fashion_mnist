@@ -12,10 +12,14 @@ we may have some constraints, two most common constraints are storage and infere
 
 Check data distribution:
 
+Training set:
+
 ![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/train_dist.png)
 
+Test set:
 
 ![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/test_dist.png)
+
 
 ## Strategy 1:
 
