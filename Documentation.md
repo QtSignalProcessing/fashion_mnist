@@ -8,10 +8,17 @@
 Reason: In real projects, accuracy is the most important metric. Howerver, due to the limited computational resouce, 
 we may have some constraints, two most common constraints are storage and inference time.
 
+## Step 1:
 
-Strateg1 1:
+Check data distribution:
+
+
+## Strategy 1:
 
 Architecture: 3 conv layers and 2 fc layers. (random choice)
+
+Reason: Building a small network can help us to understand the data. 
+
 
 Optimizer: SGD + Momentum
 
