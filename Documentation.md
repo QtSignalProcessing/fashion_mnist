@@ -51,7 +51,7 @@ Next step:
 Try a larger model with the target of boosting training and test accuracies.
 
 
-## Step 3:
+## Step 3: Try a more complex model
 
 CNN architecture: Resnet-14
 
@@ -96,7 +96,7 @@ Try to reduce the number of parameters.
 
 
 
-## Step 4:
+## Step 4: Model compression
 
 CNN architecture: Resnet-14 like
 
@@ -126,8 +126,22 @@ Analysis:
 
 3. The model is overfitted.
 
+Next step:
+
+Try some methods to reduce overfitting.
 
 
+## Step 5: Error analysis
+
+Before augment the training data, it is neccesary to analyze some mis-classified images in order to find a direction.
+
+![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/error_dist.png)
+
+The image above shows the distribution of mis-classified images for each class. Around 17.5% shirt images and 12.5% images of T-shirts are mislabeled, these two types are dominant. 
+
+![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/T-shirt_error.png)
+
+Taking a detailed view of mis-labeled shirt images, 68 images of shirts are mis-classified as T-shirt, 
 
 
 Structure 1:       
