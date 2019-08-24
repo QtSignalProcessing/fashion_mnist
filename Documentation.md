@@ -11,8 +11,8 @@ we may have some constraints, two most common constraints are storage and infere
 ## Step 1:
 
 Check data distribution:
-[[https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/train_dist.png]]
 
+[[https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/train_dist.png]]
 
 ## Strategy 1:
 
