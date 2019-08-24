@@ -18,7 +18,7 @@ Test set:
 ![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/test_dist.png)
 
 
-## Step 2: Create a toy model for a better understanding of the data
+## Step 2: Create a toy model to  better understand the data
 
 CNN architecture: 3 conv layers and 2 fc layers. (random choice)
 
@@ -27,9 +27,14 @@ input ->  conv2d_relu->max_pool -> conv2d_relu->max_pool->conv2d_relu->max_pool-
 28x28x1  ->    28x28x32    ->        14x14x32    ->        14x14x64    ->      7x7x64    ->       7x7x128    ->       3x3x128   ->    512   ->        10
 
 
-Optimizer: SGD + Momentum
+Optimizer: SGD + Momentum with learning rate decay
 
-learning rate: lr = 0.001
+learning rate: lr = 0.001  
+
+Momentum = 0.9
+
+learning rate decay: at epchoch 20, 40 with parameter gamma = 0.1
+
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | Batch size|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
@@ -52,12 +57,16 @@ CNN architecture: Resnet-14
 
 input -> conv1 -> 3 x residual blocks (4) -> fc
 
-         3x3 ,64       [ 64, 128, 256 ]           10
+         3x3 ,64       [ 64, 128, 256 ]       10
 
 
-Optimizer: SGD + Momentum
+Optimizer: SGD + Momentum with learning rate decay
 
-learning rate: lr = 0.001
+learning rate: lr = 0.001  
+
+Momentum = 0.9
+
+learning rate decay: at epchoch 20, 40 with parameter gamma = 0.1
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
@@ -67,21 +76,57 @@ learning rate: lr = 0.001
 ---
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
-| Resnet-14           | 11.1M      | 0.999             | 0.91         | -    |    -                    | -              |  128           |
+| Resnet-14           | 11.1M      | 0.999             | 0.91         | -    |    15.9s                    | 0.002s              |  128           |
 
 ---
 
+Analysis:
+
+1. Resnet-14 can learn the training set well (0.99+ training accurcary).
+
+2. This model requires 11.1M to store all parameters.
+
+3. The model is overfitted.
+
+4. Need to care about batch size or number of iterations.
+
+Next step:
+
+Try to reduce the number of parameters.
 
 
-Strategy 3:
 
-Optimizer: SGD + Momentum
+## Step 4:
 
-learning rate: lr = 0.001
+CNN architecture: Resnet-14 like
+
+input -> conv1 -> 3 x residual blocks (4) -> fc
+
+         3x3 ,32       [ 32, 64, 128 ]       10
+
+
+Optimizer: SGD + Momentum with learning rate decay
+
+learning rate: lr = 0.001  
+
+Momentum = 0.9
+
+learning rate decay: at epchoch 20, 40 with parameter gamma = 0.1
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--      |
-| Resnet-18 like      | 2.81M      | 0.995             | 0.935         | 42    |    -                    | -              | 4   |
+| Resnet-14 like      | 2.81M      | 0.995             | 0.935         | 42    |    98.7s                |    0.0005s              | 4   |
+
+
+Analysis:
+
+1. Resnet-14 like also can learn the training set well (0.99+ training accurcary).
+
+2. Compared to previous Resnet-14, this model has less parameters and is faster (both training and testing).
+
+3. The model is overfitted.
+
+
 
 
 
