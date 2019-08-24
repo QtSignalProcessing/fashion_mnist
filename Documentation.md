@@ -8,6 +8,12 @@
 Reason: In real projects, accuracy is the most important metric. Howerver, due to the limited computational resouce, 
 we may have some constraints, two most common constraints are storage and inference time.
 
+## Notes:
+
+In this project, I use the fashion mnist test set as the validation set because this is a "toy" problem. However, in real world applications the validation set is necessary.
+
+
+
 ## Step 1: Check data distribution
 
 Training set:
@@ -16,6 +22,9 @@ Training set:
 
 Test set:
 ![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/test_dist.png)
+
+Both the training and test set have balanced samples in each class. 
+
 
 
 ## Step 2: Create a toy model to  better understand the data
@@ -133,7 +142,7 @@ Try some methods to reduce overfitting.
 
 ## Step 5: Error analysis
 
-Before augment the training data, it is neccesary to analyze some mis-classified images in order to find a direction.
+Before trying some methods to reduce overfitting, it is neccesary to analyze some mis-classified images in order to find a direction.
 
 ![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/error_dist.png)
 
@@ -141,51 +150,60 @@ The image above shows the distribution of mis-classified images for each class. 
 
 ![alt text](https://github.com/QtSignalProcessing/fashion_mnist/blob/master/resource/T-shirt_error.png)
 
-Taking a detailed view of mis-labeled shirt images, 68 images of shirts are mis-classified as T-shirt, 
+Taking a detailed view of mis-labeled shirt images, images of shirt are mostly mis-classified as T-shirt, pullover, dress and coat.
+
+It is reasonable to think that adding some more training images could boost the model performace.
+
+Next step:
+
+Use data augmentation.
 
 
-Structure 1:       
+## Step 6: Data augmentation
+
+There are tones of data augmentation methods, howver, our choice of methods should not add too much unwanted noise into the training process. For example, there is no rotated image in the test set, rotation is not a good choice to augment training images.
+My choice of data augmentation method is horizontal flipping the training images with a probability of 0.5. 
+
+
+CNN architecture: Resnet-14 like
+
+input -> conv1 -> 3 x residual blocks (4) -> fc
+
+         3x3 ,32       [ 32, 64, 128 ]       10
+
+
+Optimizer: SGD + Momentum with learning rate decay
+
+learning rate: lr = 0.001  
+
+Momentum = 0.9
+
+learning rate decay: at epchoch 20, 40 with parameter gamma = 0.1
+
+| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
+| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--      |
+| Resnet-14 like      | 2.81M      | 0.999             | 0.9416         | 78    |    98.7s                |    0.002s              | 4   |
+
+
+Analysis:
+
+1. The model is still overfitted.
+
+2. Simple data augmentaion cannot help the model to perfectly distinguish T-shirt and shirt.
+
+
+## TODO:
+
+Siamese network or triplet loss could be the next direction since these two ideas are designed for distinguishing "hard" examples.
 
 
 
-epoch = 10
-
-training accuracy: 95%
-
-test accuracy: 92.11%
 
 
 
-Structure 2: 
 
-input ->  conv2d_relu x 3->max_pool -> conv2d_relu x 3->max_pool->conv2d_relu x 3->max_pool->fc1->fc2
 
-28x28x1   28x28x32     14x14x32    14x14x64     7x7x64    7x7x128      3x3x128-> 512-> 10
 
-epoch = 44
 
-training accuracy: 98.70%
 
-test accuracy: 91.93%
 
-Structure 3:
-
-Resnet-18
-
-epoch: 43
-
-training accuracy: 99.95%
-
-test accuracy: 94.08%
-
-Structure 4:
-99.90833333333333 93.61 50
-
-data aug: random crop
-86.45166666666667 93.13 186
-
-res 12
-
-99.83 93.05 42
-
-99.52333333333333 93.78 46
