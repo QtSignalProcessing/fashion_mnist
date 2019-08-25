@@ -42,5 +42,8 @@ python train.py --model resnet14s --data_aug True --nepochs 110
 
 Data distribution can be checked in the jupyter notebook visualize.ipynb. I uploaded two trained models: 1) resnet14 simplified without data augmentaion, which is named as fashin_mnist_resnet14_Le.pt, 2) resnet14 simplified with data augmentaion, which is named as fashin_mnist_resnet14s_hf.pt. Error analysis of the last model is available in visualize.ipynb.  
 
+Details of implemetation ideas please refer to Documentation.md
+
+
 
 
