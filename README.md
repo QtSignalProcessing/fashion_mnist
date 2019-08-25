@@ -1,97 +1,41 @@
 # fashion_mnist
 
-Strateg1 1:
+### Training:
 
-Architecture: 3 conv layers and 2 fc layers. (random choice)
+```
+python train.py
 
-Optimizer: SGD + Momentum
+        --model         # specify model, default = toy (toy, resnet14, resnet14s)
+        --lr      # learning rate, default =  0.001
+        --data_aug     # data augmenation, default = False
+        --batch_size    # batch size, default = 4
+        --nepochs       # max epochs, default = 50
+        --nworkers      # number of workers, default = 4
+        --seed          # random seed, default = 1
+        --model_path    # directory to store trained model, default = ./model
+```
 
-learning rate: lr = 0.001
+Examples:
 
-| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | Batch size|
-| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
-| Resnet-18           | 2.75M      | 0.95             | 0.921         | 10    |    -                    | -              | 4            |
+1. Train the toy model 
+```
+python train.py
 
+```
 
+2. Train resnet-14
 
+```
 
+python train.py --model resnet14
 
-Strategy 2:
+```
 
-Optimizer: SGD + Momentum
+3. Train the simplified resnet 14 with data augmentation to acheive the test accuracy of 0.9435
 
-learning rate: lr = 0.001
+```
+python train.py --model resnet14s --data_aug True --nepochs 110
 
-| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
-| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
-| Resnet-18           | 11.1M      | 0.992             | 0.941         | 43    |    -                    | -              | 4            |
-
-
----
-| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
-| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--
-| Resnet-18           | 11.1M      | 0.999             | 0.91         | -    |    -                    | -              |  128           |
-
----
-
-
-
-Strategy 3:
-
-Optimizer: SGD + Momentum
-
-learning rate: lr = 0.001
-
-| Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
-| :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--      |
-| Resnet-18 like      | 2.81M      | 0.995             | 0.935         | 42    |    -                    | -              | 4   |
+```
 
 
-
-Structure 1:       
-
-input ->  conv2d_relu->max_pool -> conv2d_relu->max_pool->conv2d_relu->max_pool->fc1->fc2
-
-28x28x1   28x28x32     14x14x32    14x14x64     7x7x64    7x7x128      3x3x128-> 512-> 10
-
-epoch = 10
-
-training accuracy: 95%
-
-test accuracy: 92.11%
-
-
-
-Structure 2: 
-
-input ->  conv2d_relu x 3->max_pool -> conv2d_relu x 3->max_pool->conv2d_relu x 3->max_pool->fc1->fc2
-
-28x28x1   28x28x32     14x14x32    14x14x64     7x7x64    7x7x128      3x3x128-> 512-> 10
-
-epoch = 44
-
-training accuracy: 98.70%
-
-test accuracy: 91.93%
-
-Structure 3:
-
-Resnet-18
-
-epoch: 43
-
-training accuracy: 99.95%
-
-test accuracy: 94.08%
-
-Structure 4:
-99.90833333333333 93.61 50
-
-data aug: random crop
-86.45166666666667 93.13 186
-
-res 12
-
-99.83 93.05 42
-
-99.52333333333333 93.78 46
