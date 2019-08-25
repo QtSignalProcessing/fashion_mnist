@@ -124,7 +124,7 @@ learning rate decay: at epchoch 20, 40 with parameter gamma = 0.1
 
 | Network             | #Params    | Training accuracy | Test accuracy | Epoch | Training time per epoch | Inference time | **Batch size**|
 | :---                | :---       | :---              | :---          | :---  | :---                    |   :--           | :--      |
-| Resnet-14 like      | 2.81M      | 0.995             | 0.935         | 42    |    98.7s                |    0.002s              | 4   |
+| Resnet-14 like      | 2.81M      | 0.995             | 0.936         | 42    |    98.7s                |    0.002s              | 4   |
 
 
 Analysis:
